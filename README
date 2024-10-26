@@ -1,3 +1,12 @@
 #HANGMAN PROJECT 0.1
 
-##Test_web_add_readme.md
+##HANGMAN PROJECT
+adding milestone by milestone
+
+## Milestone_2
+contians 2 files:
+adding (hangman.py for milestone_2 and mileston_2.py for words list) ;
+kept as 2 separate files so hangman.py can pull from library ;
+purpose of project: Hangman game, asking for input str and if valid print good guess or if not oops that is not a valid input
+
+## Milestone_3
