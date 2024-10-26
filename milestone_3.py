@@ -7,7 +7,7 @@ secret_word = random.choice(words)
 print("Welcome to Hangman! Try to guess the letters in the secret word.")
 
 def check_guess(guess):
-    guess = guessl.lower()
+    guess = guess.lower()
     if guess in secret_word:
         print("Good guess, ",{guess}," is in the word")
     else:
