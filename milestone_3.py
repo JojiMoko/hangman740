@@ -1,8 +1,7 @@
 import random
+from milestone_2 import word_list
 
-words = ["Banana", "Apple", "Kiwi", "Pear", "Pineapple"]
-
-secret_word = random.choice(words)
+secret_word = random.choice(word_list)
 
 print("Welcome to Hangman! Try to guess the letters in the secret word.")
 
