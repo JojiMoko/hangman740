@@ -3,46 +3,54 @@ from milestone_2 import word_list
 
 class Hangman:
     def __init__(self, word_list, num_lives=5):
-        """Initialize the Hangman game with a random word and game settings."""
         self.word_list = word_list 
-        self.word = random.choice(self.word_list) 
-        self.word_guessed = ['_' for _ in self.word]
-        self.num_letters = len(set(self.word))
-        self.num_lives = num_lives
-        self.list_of_guesses = []
+        self.secret_word = random.choice(self.word_list) 
+        self.guessed_word = ["_" for _ in self.secret_word]
+        self.remaining_letters = len(set(self.secret_word))
+        self.lives_left = num_lives
+        self.guessed_letters = []
     
+    def _update_guessed_word(self, guess):
+        for index, letter in enumerate(self.secret_word):
+            if letter == guess:
+                self.guessed_word[index] = guess
+        self.remaining_letters -= 1
+
+    def _handle_correct_guess(self, guess):
+        print(f"Good guess! The letter '{guess}' is in the word.")
+        self._update_guessed_word(guess)
+
+    def _handle_incorrect_guess(self, guess):
+        self.lives_left -= 1
+        print(f"Sorry, '{guess}' is not in the word. Try again.")
+        print(f"You have {self.lives_left} lives left.")
+
     def check_guess(self, guess):
         guess = guess.lower()
-        if guess in self.word:
-            print("Good guess, ",{guess}," is in the word")
-            
-            for i in range(len(self.word)):
-                if self.word[i] == guess:
-                    self.word_guessed[i] = guess
-            self.num_letters -= 1
+        if guess in self.secret_word:
+            self._handle_correct_guess(guess)
         else:
-            self.num_lives -= 1
-            print(f"Sorry, '{guess}' is not in the word. Try again.")
-            print(f"You have {self.num_lives} lives left")
-            
+            self._handle_incorrect_guess(guess)
+
     def ask_for_input(self):
         while True:
             guess = input("Guess a letter: ").strip().lower()
-            
             if not guess.isalpha() or len(guess) != 1:
-                print("Invalid letter. Please, enter a single alphabetical character.")
-            elif guess in self.list_of_guesses:
-                print("You've already tried that letter")
+                print("Invalid input. Please enter a single letter.")
+            elif guess in self.guessed_letters:
+                print("You've already tried that letter.")
             else:
+                self.guessed_letters.append(guess)
                 self.check_guess(guess)
-                self.list_of_guesses.append(guess)
                 break
 
 if __name__ == "__main__":
-    word_list = ["apple", "banana", "cherry", "date", "elderberry"]
     game = Hangman(word_list)
-    print(f"The word to guess: {' '.join(game.word_guessed)}")
-    print(f"Unique letters to guess: {game.num_letters}")
-    print(f"Starting lives: {game.num_lives}")
     
-game.ask_for_input()
+    print(f"The word to guess: {' '.join(game.guessed_word)}")
+    print(f"Unique letters to guess: {game.remaining_letters}")
+    print(f"Starting lives: {game.lives_left}")
+    
+    while game.lives_left > 0 and '_' in game.guessed_word:
+        game.ask_for_input()
+        print(f"Current guess: {' '.join(game.guessed_word)}")
