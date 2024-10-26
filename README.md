@@ -16,3 +16,13 @@ kept as 2 separate files so hangman.py can pull from library ;
 purpose of project: Hangman game, asking for input str and if valid print good guess or if not oops that is not a valid input
 
 ## Milestone_3
+
+## Milestone_4
+defining __init__ method
+class hangman creation  with init method and passing word_list and num_lives as params, param for lives = 5
+1. word: initilizing picking random word (at random from word_list)
+2. word_guessed: (list) and if guessed to replace _ with letter)
+3. num_letters (int) remaining unguessed unique letteres
+4. num_lives: int = 5
+5. word_list: list of words (pulled from list)
+6. list_of_guesses: list = tried already (initial empty)
