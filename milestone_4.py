@@ -1,4 +1,5 @@
 import random
+from milestone_2 import word_list
 
 class Hangman:
     def __init__(self, word_list, num_lives=5):
@@ -38,8 +39,8 @@ class Hangman:
                 break
 
 if __name__ == "__main__":
-    words = ["apple", "banana", "cherry", "date", "elderberry"]
-    game = Hangman(words)
+    word_list = ["apple", "banana", "cherry", "date", "elderberry"]
+    game = Hangman(word_list)
     print(f"The word to guess: {' '.join(game.word_guessed)}")
     print(f"Unique letters to guess: {game.num_letters}")
     print(f"Starting lives: {game.num_lives}")
